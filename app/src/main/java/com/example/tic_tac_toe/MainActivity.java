@@ -59,13 +59,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        btn0.setOnClickListener(view-> {
-//
-//            if(isBoxSelected(0)){
-//                turnAction((ImageButton) view,0);
-//            }
-//
-//        });
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,13 +137,13 @@ public class MainActivity extends AppCompatActivity {
     private void turnAction(ImageButton image, int position){
         boxPositions[position]=playerTurn;
         if(playerTurn==1){
-            image.setImageResource(R.drawable.x_img);
+            image.setImageResource(R.drawable.small_x_icon);
             image.setBackgroundColor(000);
             System.out.println("player" + playerTurn);
 
         }
         else{
-            image.setImageResource(R.drawable.o_img);
+            image.setImageResource(R.drawable.smaill_icon_2);
             System.out.println("player" + playerTurn);
         }
 
