@@ -3,6 +3,7 @@ package com.example.tic_tac_toe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -47,59 +48,79 @@ public class MainActivity extends AppCompatActivity {
         combinationsToWin.add(new int[] {2,4,6});
         combinationsToWin.add(new int[] {0,4,8});
 
-        btn0.setOnClickListener(view-> {
-
-            if(isBoxSelected(0)){
-
+        btn0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("0");
+                if(isBoxFree(0)){
+                    turnAction((ImageButton) view,0);
+                    System.out.println("01");
+                }
             }
-
         });
-        btn1.setOnClickListener(view-> {
 
-            if(isBoxSelected(1)){
-
+//        btn0.setOnClickListener(view-> {
+//
+//            if(isBoxSelected(0)){
+//                turnAction((ImageButton) view,0);
+//            }
+//
+//        });
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isBoxFree(1)){
+                    turnAction((ImageButton) view,1);
+                }
             }
         });
         btn2.setOnClickListener(view-> {
 
-            if(isBoxSelected(2)){
-
+            if(isBoxFree(2)){
+                turnAction((ImageButton) view,2);
             }
         });
         btn3.setOnClickListener(view-> {
 
-            if(isBoxSelected(3)){
-
+            if(isBoxFree(3)){
+                turnAction((ImageButton) view,3);
             }
         });
         btn4.setOnClickListener(view-> {
 
-            if(isBoxSelected(4)){
-
+            if(isBoxFree(4)){
+                turnAction((ImageButton) view,4);
             }
         });
         btn5.setOnClickListener(view-> {
 
-            if(isBoxSelected(5)){
-
+            if(isBoxFree(5)){
+                turnAction((ImageButton) view,5);
             }
         });
         btn6.setOnClickListener(view-> {
 
-            if(isBoxSelected(6)){
-
+            if(isBoxFree(6)){
+                turnAction((ImageButton) view,6);
             }
         });
         btn7.setOnClickListener(view-> {
 
-            if(isBoxSelected(7)){
-
+            if(isBoxFree(7)){
+                turnAction((ImageButton) view,7);
             }
         });
         btn8.setOnClickListener(view-> {
 
-            if(isBoxSelected(8)){
+            if(isBoxFree(8)){
+                turnAction((ImageButton) view,8);
+            }
+        });
 
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startAgain();
             }
         });
 
@@ -110,13 +131,87 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private boolean isBoxSelected(int position){
+    private boolean isBoxFree(int position){
 
-        boolean selected= false;
+        boolean selected= true;
 
-        if(boxPositions[position]==1)
-            selected=true;
+        if(boxPositions[position]==1 ||boxPositions[position]==2 )
+            selected=false;
 
         return selected;
     }
+
+    private void turnAction(ImageButton image, int position){
+        boxPositions[position]=playerTurn;
+        if(playerTurn==1){
+            image.setImageResource(R.drawable.x_img);
+            image.setBackgroundColor(000);
+            System.out.println("player" + playerTurn);
+
+        }
+        else{
+            image.setImageResource(R.drawable.o_img);
+            System.out.println("player" + playerTurn);
+        }
+
+        if(checkWin()){
+            System.out.println("win");
+        }
+
+        else if(totalSelectedBoxes==9){
+            System.out.println("game Over - not win");
+        }
+
+//        else{
+//            totalSelectedBoxes++;
+//
+//            changePlayerTurn();
+//        }
+        totalSelectedBoxes++;
+        System.out.println("total: "+totalSelectedBoxes);
+        changePlayerTurn();
+
+
+    }
+
+    private void changePlayerTurn(){
+        if(playerTurn==1){
+            playerTurn=2;
+            //change imagebutton view to turn x
+        }
+
+        else{
+            playerTurn=1;
+            //change imagebutton view to turn y
+        }
+    }
+
+    private boolean checkWin(){
+        boolean win=false;
+        for(int i=0;i<combinationsToWin.size();i++){
+            final int[] combination = combinationsToWin.get(i);
+            if(boxPositions[combination[0]]==playerTurn && boxPositions[combination[1]]==playerTurn && boxPositions[combination[2]]==playerTurn){
+                win=true;
+            }
+        }
+        return win;
+    }
+
+    private void startAgain(){
+        totalSelectedBoxes=0;
+        playerTurn=1;
+        boxPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+        btn0.setImageResource(R.drawable.square_icon);
+        btn1.setImageResource(R.drawable.square_icon);
+        btn2.setImageResource(R.drawable.square_icon);
+        btn3.setImageResource(R.drawable.square_icon);
+        btn4.setImageResource(R.drawable.square_icon);
+        btn5.setImageResource(R.drawable.square_icon);
+        btn6.setImageResource(R.drawable.square_icon);
+        btn7.setImageResource(R.drawable.square_icon);
+        btn8.setImageResource(R.drawable.square_icon);
+        System.out.println("restart game");
+    }
+
+
 }
