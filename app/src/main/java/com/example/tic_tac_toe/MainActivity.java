@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private int totalSelectedBoxes=1;
 
     private ImageButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
+    private ImageView turnImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
         combinationsToWin.add(new int[] {2,5,8});
         combinationsToWin.add(new int[] {2,4,6});
         combinationsToWin.add(new int[] {0,4,8});
+        turnImage= findViewById(R.id.main_activity_turn);
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                turnImage.setImageResource(R.drawable.x_play);
+                turnImage.setVisibility(view.INVISIBLE);
+                startAgain();
+                turnImage.setVisibility(view.VISIBLE);
+            }
+        });
 
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,12 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startAgain();
-            }
-        });
+
 
 
 
@@ -137,12 +144,15 @@ public class MainActivity extends AppCompatActivity {
     private void turnAction(ImageButton image, int position){
         boxPositions[position]=playerTurn;
         if(playerTurn==1){
+//            turnImage= findViewById(R.id.main_activity_turn).
+            turnImage.setImageResource(R.drawable.x_play);
             image.setImageResource(R.drawable.small_x_icon);
             image.setBackgroundColor(000);
             System.out.println("player" + playerTurn);
 
         }
         else{
+            turnImage.setImageResource(R.drawable.o_play);
             image.setImageResource(R.drawable.smaill_icon_2);
             System.out.println("player" + playerTurn);
         }
