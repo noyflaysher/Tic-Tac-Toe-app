@@ -35,7 +35,6 @@ public class WinDialog extends Dialog {
                 mainActivity.startAgain();
                 dismiss();
             }
-        });
-
+    });
     }
 }
