@@ -113,10 +113,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        startBtn.setOnClickListener(view -> {
-//            startAgain();
-//        });
-
 
 
 
@@ -163,15 +159,12 @@ public class MainActivity extends AppCompatActivity {
             winDialog.setCancelable(false);
             winDialog.show();
 
-
-            System.out.println("win");
         }
 
         else if(totalSelectedBoxes==9){
             WinDialog winDialog=new WinDialog(MainActivity.this,"It is a draw! no winner..",MainActivity.this);
             winDialog.setCancelable(false);
             winDialog.show();
-            System.out.println("game Over - not win");
         }
 
         else{
@@ -246,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
         btn7.setImageResource(R.drawable.images);
         btn8.setImageResource(R.drawable.images);
         playerTurnImg.setImageResource(R.drawable.xplay);
-        System.out.println("restart game");
     }
 
 
