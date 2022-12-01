@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F0CC"
-    tools:context=".MainActivity">
+    android:background="#8FC82929"
+    android:backgroundTint="#80000000">
 
     <TextView
         android:id="@+id/main_activity_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
+        android:ellipsize="middle"
+        android:fontFamily="casual"
         android:text="Tic Tac Toe"
-        android:textSize="35sp"
+        android:textSize="48sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.08" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -52,7 +56,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
                 android:id="@+id/main_activity_btn2"
@@ -65,7 +69,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
                 android:id="@+id/main_activity_btn3"
@@ -78,7 +82,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +102,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
                 android:id="@+id/main_activity_btn5"
@@ -111,7 +115,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
                 android:id="@+id/main_activity_btn6"
@@ -124,7 +128,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,7 +148,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
                 android:id="@+id/main_activity_btn8"
@@ -157,7 +161,7 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
                 android:id="@+id/main_activity_btn9"
@@ -170,24 +174,29 @@
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/square_icon" />
+                app:srcCompat="@drawable/images" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/main_activity_btn_start"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:background="#BAA0DA"
-        android:backgroundTint="#7C2626"
-        android:text="start playing"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="384dp"
+        android:layout_height="385dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_title"
+        app:srcCompat="@drawable/empty"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <ImageView
+        android:id="@+id/main_activity_turnPlay"
+        android:layout_width="233dp"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/xplay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

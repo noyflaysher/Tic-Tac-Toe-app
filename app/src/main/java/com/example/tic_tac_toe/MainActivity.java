@@ -21,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
     private int totalSelectedBoxes=1;
 
     private ImageButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
+    private ImageView line, playerTurnImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button startBtn= findViewById(R.id.main_activity_btn_start);
+//        Button startBtn= findViewById(R.id.main_activity_btn_start);
 
         btn0= findViewById(R.id.main_activity_btn1);
         btn1= findViewById(R.id.main_activity_btn2);
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         btn6= findViewById(R.id.main_activity_btn7);
         btn7= findViewById(R.id.main_activity_btn8);
         btn8= findViewById(R.id.main_activity_btn9);
+        line= findViewById(R.id.imageView4);
+        playerTurnImg= findViewById(R.id.main_activity_turnPlay);
 
         combinationsToWin.add(new int[] {0,1,2});
         combinationsToWin.add(new int[] {3,4,5});
@@ -110,14 +113,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startAgain();
-            }
-        });
-
-
+//        startBtn.setOnClickListener(view -> {
+//            startAgain();
+//        });
 
 
 
@@ -137,72 +135,117 @@ public class MainActivity extends AppCompatActivity {
     private void turnAction(ImageButton image, int position){
         boxPositions[position]=playerTurn;
         if(playerTurn==1){
-            image.setImageResource(R.drawable.small_x_icon);
-            image.setBackgroundColor(000);
+            image.setImageResource(R.drawable.x_icon_3);
             System.out.println("player" + playerTurn);
+            System.out.println("toal " + totalSelectedBoxes);
 
         }
         else{
-            image.setImageResource(R.drawable.smaill_icon_2);
+            image.setImageResource(R.drawable.o_icon_small_3);
             System.out.println("player" + playerTurn);
+            System.out.println("toal " + totalSelectedBoxes);
         }
 
         if(checkWin()){
+            String message="";
+            if(playerTurn==1)
+            {
+                message="Player 1 is the winner";
+
+            }
+            if(playerTurn==2)
+            {
+                message="Player 2 is the winner";
+            }
+
+
+            WinDialog winDialog=new WinDialog(MainActivity.this,message,MainActivity.this);
+            winDialog.setCancelable(false);
+            winDialog.show();
+
+
             System.out.println("win");
         }
 
         else if(totalSelectedBoxes==9){
+            WinDialog winDialog=new WinDialog(MainActivity.this,"It is a draw! no winner..",MainActivity.this);
+            winDialog.setCancelable(false);
+            winDialog.show();
             System.out.println("game Over - not win");
         }
 
-//        else{
-//            totalSelectedBoxes++;
-//
-//            changePlayerTurn();
-//        }
-        totalSelectedBoxes++;
-        System.out.println("total: "+totalSelectedBoxes);
-        changePlayerTurn();
-
-
+        else{
+            totalSelectedBoxes++;
+            changePlayerTurn();
+        }
     }
 
     private void changePlayerTurn(){
         if(playerTurn==1){
             playerTurn=2;
-            //change imagebutton view to turn x
+            playerTurnImg.setImageResource(R.drawable.oplay);
+
         }
 
         else{
             playerTurn=1;
-            //change imagebutton view to turn y
+            playerTurnImg.setImageResource(R.drawable.xplay);
         }
     }
 
     private boolean checkWin(){
         boolean win=false;
+
         for(int i=0;i<combinationsToWin.size();i++){
             final int[] combination = combinationsToWin.get(i);
             if(boxPositions[combination[0]]==playerTurn && boxPositions[combination[1]]==playerTurn && boxPositions[combination[2]]==playerTurn){
                 win=true;
+                if(combination[0]==3 && combination[1]==4 && combination[2]==5){
+                    line.setImageResource(R.drawable.mark6);
+                }
+                if(combination[0]==1 && combination[1]==4 && combination[2]==7){
+                    line.setImageResource(R.drawable.mark4);
+                }
+                if(combination[0]==2 && combination[1]==5 && combination[2]==8){
+                    line.setImageResource(R.drawable.mark5);
+                }
+                if(combination[0]==0 && combination[1]==3 && combination[2]==6){
+                    line.setImageResource(R.drawable.mark3);
+                }
+                if(combination[0]==2 && combination[1]==4 && combination[2]==6){
+                    line.setImageResource(R.drawable.mark2);
+                }
+                if(combination[0]==0 && combination[1]==4 && combination[2]==8){
+                    line.setImageResource(R.drawable.mark1);
+                }
+                if(combination[0]==6 && combination[1]==7 && combination[2]==8){
+                    line.setImageResource(R.drawable.mark7);
+                }
+                if(combination[0]==0 && combination[1]==1 && combination[2]==2){
+                    line.setImageResource(R.drawable.mark8);
+                }
             }
+
         }
         return win;
     }
 
-    private void startAgain(){
+    public void startAgain(){
         totalSelectedBoxes=0;
         playerTurn=1;
         boxPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-        btn0.setImageResource(R.drawable.square_icon);
-        btn1.setImageResource(R.drawable.square_icon);
-        btn2.setImageResource(R.drawable.square_icon);
-        btn3.setImageResource(R.drawable.square_icon);
-        btn4.setImageResource(R.drawable.square_icon);
-        btn5.setImageResource(R.drawable.square_icon);
-        btn6.setImageResource(R.drawable.square_icon);
-        btn7.setImageResource(R.drawable.square_icon);
-        btn8.setImageResource(R.drawable.square_icon);
+        line.setImageResource(R.drawable.empty);
+
+        btn0.setImageResource(R.drawable.images);
+        btn1.setImageResource(R.drawable.images);
+        btn2.setImageResource(R.drawable.images);
+        btn3.setImageResource(R.drawable.images);
+        btn4.setImageResource(R.drawable.images);
+        btn5.setImageResource(R.drawable.images);
+        btn6.setImageResource(R.drawable.images);
+        btn7.setImageResource(R.drawable.images);
+        btn8.setImageResource(R.drawable.images);
+        playerTurnImg.setImageResource(R.drawable.xplay);
         System.out.println("restart game");
     }
 
